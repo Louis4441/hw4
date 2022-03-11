@@ -14,11 +14,11 @@ class SessionsController < ApplicationController
           if BCrypt::Password.new(@user.password) == entered_password # if password also matches
               # cookie["user_id"] = @user.id - not as safe as user can change their id in cookies
               # so we use session instead
-              session["user_id"] = @user.id
+              session[:user_id] = @user.id
               flash[:notice] == "Welcome!"
-              redirect_to "/companies"
+              redirect_to "/places"
           else # password doesn't match
-              flash[:notice] == "Incorrect password"
+              flash[:notice] == "Incorrect password."
               redirect_to "/sessions/new"
           end
       else # email doesn't exist in db
@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session["user_id"] = nil
+    session[:user_id] = nil
     flash[:notice] = "Logged out"
     redirect_to "/sessions/new"
   end
