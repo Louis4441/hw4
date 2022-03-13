@@ -3,9 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-
     @user = User.find_by({ email: params["email"] })
-        
       if @user # email exists in db
           #check password
           if BCrypt::Password.new(@user.password) == params["password"] # if password matches
