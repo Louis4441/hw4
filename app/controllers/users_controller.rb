@@ -5,8 +5,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params["user"])
-    plain_text_password = params["user"]["password"]
-    @user.password = BCrypt::Password.create(plain_text_password)
+    @user.password = BCrypt::Password.create(params["user"]["password"])
     @user.save
     redirect_to "/places"
   end
