@@ -1,4 +1,4 @@
-<div class="row">
+<div class="container">
 
   <div>
     <h1><%= "#{@place.name} - My Posts" %></h1>
@@ -8,6 +8,11 @@
   <div class="col-md-4 col-sm-6">
     <h3><%= post.title %></h3>
     <h4><%= post.posted_on %></h4>
+    <% if post.uploaded_image.attached? %>
+      <img src="<%= url_for(post.uploaded_image) %>" class="img-fluid">
+    <% else %>
+      <p>No image</p>
+    <% end %>
     <p><%= post.description %></p>
   </div>
   <% end %>
